@@ -1,0 +1,8 @@
+{
+  "name": "shadowplay-rp",
+  "version": "1.0.0",
+  "description": "SHADOWPLAY RP Landing Page",
+  "scripts": {
+    "build": "echo 'Static site ready'"
+  }
+}
