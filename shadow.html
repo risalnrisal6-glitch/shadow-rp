@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SHADOWPLAY RP - India's Premium Mobile Roleplay Server">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>SHADOWPLAY RP - Premium Mobile CRMP Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --text-light: #ffffff;
+            --text-muted: #b0b0b0;
+            --border-color: #2a2a3e;
+            --success: #00d084;
+            --warning: #ffa500;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1419 100%);
+            z-index: -2;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--highlight-color);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--highlight-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--highlight-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--highlight-color);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* HEADER / HERO */
+        .hero {
+            min-height: 100vh;
+            padding-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.5) 0%, rgba(26, 26, 46, 0.8) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 3px solid var(--highlight-color);
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--highlight-color);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 13px 35px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--highlight-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #d63d52;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--highlight-color);
+            border: 2px solid var(--highlight-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--highlight-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 25px;
+            font-size: 12px;
+        }
+
+        /* SERVER STATUS */
+        .server-status {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px 30px;
+            margin: 40px auto 0;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-text strong {
+            color: var(--success);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FEATURES SECTION */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            border-color: var(--highlight-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* GAMEPLAY FEATURES */
+        .gameplay-section {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .gameplay-section h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--highlight-color);
+        }
+
+        .gameplay-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .gameplay-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .gameplay-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .gameplay-item-icon {
+            color: var(--highlight-color);
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .gameplay-item-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .gameplay-item-text strong {
+            color: var(--text-light);
+        }
+
+        /* STATS SECTION */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--highlight-color);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.15);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--highlight-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* DISCORD SECTION */
+        .discord-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .discord-card {
+            background: var(--secondary-color);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .discord-card:hover {
+            border-color: var(--highlight-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.15);
+        }
+
+        .discord-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .discord-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .discord-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .discord-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* FAQ SECTION */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--highlight-color);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .faq-question:hover {
+            background: var(--accent-color);
+            padding-left: 35px;
+        }
+
+        .faq-toggle {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            color: var(--highlight-color);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: rgba(10, 10, 20, 0.5);
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 25px;
+            max-height: 500px;
+        }
+
+        /* DOWNLOAD SECTION */
+        .download-section {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.1) 0%, rgba(15, 52, 96, 0.1) 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .download-section h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .download-section p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .version-info {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(10, 10, 20, 0.8);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--highlight-color);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--secondary-color);
+                padding: 20px;
+                z-index: 999;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .hero-logo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .gameplay-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .discord-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-container {
+                max-width: 100%;
+            }
+
+            .download-section {
+                padding: 40px 25px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 0;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .nav-logo-text {
+                font-size: 18px;
+            }
+
+            .nav-logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero {
+                padding-top: 90px;
+                padding-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: 1px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .hero-logo {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .section-subtitle {
+                font-size: 14px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+            .feature-icon {
+                font-size: 32px;
+            }
+
+            .feature-card h3 {
+                font-size: 16px;
+            }
+
+            .feature-card p {
+                font-size: 13px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .faq-question {
+                padding: 20px;
+                font-size: 15px;
+            }
+
+            .faq-answer {
+                font-size: 13px;
+            }
+
+            .gameplay-section {
+                padding: 25px;
+            }
+
+            .gameplay-section h3 {
+                font-size: 20px;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 12px;
+            }
+
+            .server-status {
+                margin-top: 25px;
+                padding: 15px 20px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://cdn.discordapp.com/guilds/1486427840835485949/users/1462490721956135135/avatars/d22f062d7c26e2044fa2635d0f3787cb.png?size=512" alt="SHADOWPLAY RP">
+                <span class="nav-logo-text">SHADOWPLAY RP</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gameplay">Gameplay</a></li>
+                <li><a href="#stats">Statistics</a></li>
+                <li><a href="#discord">Community</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="https://cdn.discordapp.com/guilds/1486427840835485949/users/1462490721956135135/avatars/d22f062d7c26e2044fa2635d0f3787cb.png?size=512" alt="SHADOWPLAY RP" class="hero-logo">
+                <h1>SHADOWPLAY RP</h1>
+                <h2>India's Premium Mobile Roleplay Experience</h2>
+                <p>Experience immersive roleplay gameplay with realistic jobs, organizations, properties, and dynamic economy. Join thousands of players in India's most advanced mobile CRMP server.</p>
+                <div class="hero-buttons">
+                    <a href="https://www.mediafire.com/file/7312sogwbpd558h/SHADOWPLAY+RP+16.22.0.apk/file" target="_blank" class="btn btn-primary">📥 Download APK</a>
+                    <a href="https://discord.gg/2qrnzCafnm" target="_blank" class="btn btn-secondary">💬 Join Discord</a>
+                </div>
+                <div class="server-status">
+                    <div class="status-indicator"></div>
+                    <div class="status-text">Server <strong>Online</strong> • 24/7 Active</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Premium Features</h2>
+                <p class="section-subtitle">Everything you need for an immersive roleplay experience</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h3>Realistic Roleplay</h3>
+                    <p>Engage in authentic roleplaying with realistic mechanics and continuous updates</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🚔</span>
+                    <h3>Law Enforcement</h3>
+                    <p>Police Department with proper hierarchy, ranks, and patrol systems</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🚑</span>
+                    <h3>Emergency Services</h3>
+                    <p>EMS team providing medical assistance and rescue operations</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏛️</span>
+                    <h3>Government</h3>
+                    <p>Government jobs and official positions for legal roleplay</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">👥</span>
+                    <h3>Organizations</h3>
+                    <p>Join gangs, families, and syndicates with detailed management systems</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💼</span>
+                    <h3>Dynamic Jobs</h3>
+                    <p>Multiple job opportunities including taxi, trucker, delivery, and more</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏎️</span>
+                    <h3>Premium Vehicles</h3>
+                    <p>Exclusive vehicles with custom textures and realistic handling</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏠</span>
+                    <h3>Property System</h3>
+                    <p>Own houses and apartments with customizable interiors</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏪</span>
+                    <h3>Businesses</h3>
+                    <p>Create and manage your own businesses for passive income</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏦</span>
+                    <h3>Banking System</h3>
+                    <p>Secure transactions with bank accounts and investment features</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3>Multiplayer</h3>
+                    <p>Seamless gameplay with thousands of players on one server</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎁</span>
+                    <h3>Daily Rewards</h3>
+                    <p>Login rewards and seasonal bonuses for active players</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GAMEPLAY SECTION -->
+    <section id="gameplay">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Gameplay & Mechanics</h2>
+                <p class="section-subtitle">Deep and immersive systems for endless roleplay opportunities</p>
+            </div>
+
+            <div class="gameplay-section">
+                <h3>Career Paths</h3>
+                <div class="gameplay-content">
+                    <div class="gameplay-list">
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Law Enforcement:</strong> Join LSPD and maintain order in the city</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Emergency Response:</strong> Work as a paramedic saving lives</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Government Jobs:</strong> Work in official positions and public services</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Civilian Jobs:</strong> Multiple civilian opportunities and industries</div>
+                        </div>
+                    </div>
+                    <div class="gameplay-list">
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Business Ownership:</strong> Open stores, restaurants, and more</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Property Management:</strong> Buy and sell houses and apartments</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Organization Life:</strong> Join crews and criminal syndicates</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">✓</span>
+                            <div class="gameplay-item-text"><strong>Criminal Activities:</strong> Engage in heists, robberies, and more</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gameplay-section">
+                <h3>Economy & Currency</h3>
+                <div class="gameplay-content">
+                    <div class="gameplay-list">
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">💰</span>
+                            <div class="gameplay-item-text"><strong>Realistic Economy:</strong> Market-driven prices and dynamic cash flow</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">💳</span>
+                            <div class="gameplay-item-text"><strong>Bank Accounts:</strong> Secure your money with banking services</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">📊</span>
+                            <div class="gameplay-item-text"><strong>Investments:</strong> Invest in businesses and properties for returns</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">💸</span>
+                            <div class="gameplay-item-text"><strong>Wages & Salaries:</strong> Earn from jobs and career progression</div>
+                        </div>
+                    </div>
+                    <div class="gameplay-list">
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">🏆</span>
+                            <div class="gameplay-item-text"><strong>Rewards System:</strong> Daily bonuses and achievement rewards</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">💎</span>
+                            <div class="gameplay-item-text"><strong>Premium Currency:</strong> Optional premium items for personalization</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">📈</span>
+                            <div class="gameplay-item-text"><strong>Wealth Progression:</strong> Multiple paths to financial success</div>
+                        </div>
+                        <div class="gameplay-item">
+                            <span class="gameplay-item-icon">🎯</span>
+                            <div class="gameplay-item-text"><strong>Objectives:</strong> Complete missions for rewards and progression</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTICS SECTION -->
+    <section id="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Server Statistics</h2>
+                <p class="section-subtitle">Join our growing community of roleplay enthusiasts</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10000">10000</div>
+                    <div class="stat-label">+ Total Downloads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="5000">5000</div>
+                    <div class="stat-label">+ Active Players</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Server Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">✓</div>
+                    <div class="stat-label">Professional Staff</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCORD SECTION -->
+    <section id="discord">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Join Our Community</h2>
+                <p class="section-subtitle">Connect with thousands of players across our Discord servers</p>
+            </div>
+            <div class="discord-cards">
+                <div class="discord-card">
+                    <span class="discord-icon">🎮</span>
+                    <h3>Main Server</h3>
+                    <p>Join our primary Discord community for updates, support, and discussions with the SHADOWPLAY RP team and players.</p>
+                    <a href="https://discord.gg/2qrnzCafnm" target="_blank" class="btn btn-primary">Join Now</a>
+                </div>
+                <div class="discord-card">
+                    <span class="discord-icon">🏢</span>
+                    <h3>Organization Server</h3>
+                    <p>Coordinate with your organization members, share strategies, and manage your crew's activities and resources.</p>
+                    <a href="https://discord.gg/59pXJTV9Nw" target="_blank" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section style="background: rgba(233, 69, 96, 0.03); padding: 100px 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ready to Play?</h2>
+                <p class="section-subtitle">Download now and start your journey in SHADOWPLAY RP</p>
+            </div>
+            <div class="download-section">
+                <h3>Download SHADOWPLAY RP APK</h3>
+                <p>Get the latest version of SHADOWPLAY RP and join the most immersive roleplay experience on mobile. Download is completely free.</p>
+                <a href="https://www.mediafire.com/file/7312sogwbpd558h/SHADOWPLAY+RP+16.22.0.apk/file" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center;">📥 Download Now</a>
+                <div class="version-info">
+                    <strong>Latest Version:</strong> 16.22.0 | <strong>Size:</strong> ~450 MB | <strong>Requires:</strong> Android 8.0+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find answers to common questions about SHADOWPLAY RP</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I install SHADOWPLAY RP?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        1. Download the APK file from our website or the download link provided. 2. Go to your device settings and enable "Unknown Sources" under Security. 3. Open the downloaded APK file and tap Install. 4. Wait for the installation to complete (usually 2-3 minutes depending on your device). 5. Launch the app and create your character to start playing!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is SHADOWPLAY RP completely free?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! SHADOWPLAY RP is completely free to play. All core gameplay features including jobs, properties, vehicles, and organizations are available to all players. We offer optional cosmetic items and premium passes that provide convenience but don't affect gameplay balance. You can enjoy the full experience without spending any money.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What are the minimum device requirements?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        SHADOWPLAY RP requires Android 8.0 or higher. For optimal performance, we recommend using a device with at least 4GB of RAM. The game requires approximately 450MB of free storage space. Performance may vary on older devices, but the game is designed to work on a wide range of Android devices. If you experience issues, updating your OS or clearing cache can help.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I join the Discord server?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Simply click on the Discord invite links provided on our website. You'll be taken to Discord where you can join our Main Server (for general discussion and updates) or Organization Server (for managing your crew). Once you join, read the rules and introduction channels. You'll have access to all community features including support, announcements, and social channels.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there support if I encounter issues?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! Our support team is available on Discord 24/7. You can also reach out through our in-game support system. Common issues include cache clearing, reinstalling the app, or updating your device. If you're experiencing crashes or lag, try clearing your device's cache or freeing up storage space. Our staff members are always ready to help with technical issues and general questions.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I create a character with any name?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Character names must follow specific formatting rules: First name followed by Last name (e.g., John_Doe). Names must be appropriate and follow community guidelines. Certain names or offensive terms are not allowed. Your name should reflect your character for immersive roleplay. If your desired name is taken, you can choose an alternative. You can contact support if you need to change your character name.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p><strong>SHADOWPLAY RP</strong></p>
+            <p>India's Premium Mobile Roleplay Server</p>
+            <div class="footer-links">
+                <a href="https://discord.gg/2qrnzCafnm" target="_blank">Main Discord</a>
+                <a href="https://discord.gg/59pXJTV9Nw" target="_blank">Organization Server</a>
+                <a href="#faq">Support</a>
+                <a href="#features">Features</a>
+            </div>
+            <p style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">© 2026 SHADOWPLAY RP. All Rights Reserved. | Designed for Ultimate Roleplay Experience</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Animate Numbers on Scroll
+        const animateNumbers = () => {
+            const numbers = document.querySelectorAll('[data-target]');
+            numbers.forEach(num => {
+                const target = parseInt(num.dataset.target);
+                let current = 0;
+                const increment = target / 50;
+                
+                const updateNumber = () => {
+                    if (current < target) {
+                        current += increment;
+                        num.textContent = Math.floor(current).toLocaleString();
+                        setTimeout(updateNumber, 30);
+                    } else {
+                        num.textContent = target.toLocaleString();
+                    }
+                };
+                
+                updateNumber();
+            });
+        };
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id === 'stats') {
+                    animateNumbers();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
+            });
+        });
+
+        // Add Fade-in animation on scroll
+        const fadeInElements = document.querySelectorAll('.feature-card, .stat-card, .discord-card, .gameplay-section');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease-out forwards';
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeInElements.forEach(element => fadeInObserver.observe(element));
+    </script>
+</body>
+</html>
